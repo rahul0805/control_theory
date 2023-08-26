@@ -1,0 +1,30 @@
+
+%% Sub section 1
+epsilon = 0.2;
+samp = 10;
+
+t = 0:0.01:30;
+
+optPos = odeset('RelTol', 1e-6, 'AbsTol',1e-6);
+
+x = -2.5:0.1:3.5;
+y = -4:0.1:4;
+[X,Y] = meshgrid(x,y);
+
+ind = size(X);
+
+fig = figure();
+for i=1:ind(1)
+    for j=1:ind(2)
+        
+        x0 = [1.993;0.4];
+        [tP, x_new] = ode45(@(t,x)dyn(t,x), t, x0, optPos);
+
+        plot(x_new(:,1),x_new(:,2))
+        % quiver(x_new(1:samp:end,1),x_new(1:samp:end,2))
+        axis equal
+        grid on
+    end
+end
+
+

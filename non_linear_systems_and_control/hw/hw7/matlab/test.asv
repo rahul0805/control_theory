@@ -1,0 +1,25 @@
+x = -2.5:0.1:3.5;
+y = -4:0.1:4;
+[X,Y] = meshgrid(x,y);
+
+xs = 0.707;
+ys = 0;
+
+X_dot = Y;
+
+F = ((0.5*(Y.*Y) -2*(cos(X)-cos(xs)) - 1.3*(X-xs)));
+
+G = (((Y.*(-2*sin(X)- 0.5*Y + 1.3)) +2*(sin(X).*Y) - 1.3*(Y)));
+
+% mask = F<0;
+% scatter(X(mask), Y(mask))
+R = sqrt((X-xs).^2 + (Y-ys).^2);
+figure();
+% contour(X-xs,Y-ys,F,'ShowText','on',"%0.1f m");
+contour(X-xs,Y-ys,F,20);
+% hold on
+% contour(X-xs,Y-ys,G,'--','ShowText','on')
+% [M,c] = contour(X-xs,Y-ys,R,'-.','ShowText','on');
+% c.LineWidth = 3;
+% 
+% hold off
